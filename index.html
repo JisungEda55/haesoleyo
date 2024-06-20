@@ -74,10 +74,84 @@
         <div class="loading-text" id="loading-text">문구를 생성하고 있어요..</div>
         <div id="dynamic-text" style="display: none;"></div>
         <div id="copy-success" class="copy-success-message"></div>
-        <button class="copy-button" onclick="copyText()">복사</button>
+        <button class="copy-button" onclick="copyText()">제목</button>
+        <button class="copy-button" onclick="copyDescription()">설명</button>
     </div>
 
     <script>
+        const longDescription = `
+[ Plus ] KOR
+✅ 시험 및 기간
+➡️  2025 수능을 준비하는 재수생 ✏️
+➡️ 인터넷 강의와 함께 독학재수를 하고 있습니다.
+➡️ 방송화면에 인터넷 강의 및 교재가 보이지 않도록 최선의 노력을 다하고 있습니다.
+      혹시 방송화면에 가시성 좋게 강의 또는 교재가 보이신다면 연락바랍니다.
+
+✅ Time table
+➡️ 우측에 표시되는 시간표는 jisungeda55점github점io/TimeCast/ 에서 만나보실 수 있습니다.
+➡️ 우측 상단의 영상은 서울의 실시간 영상입니다. https://www.youtube.com/live/UhULZg8QOiE?si=5Lel5gZV1UEx8eS9
+
+✅ 사용가능한 명령어
+🛑 !안녕 ( !hi )
+🛑 !출석 ( !here, !imhere )
+🛑 !들어갑니다 ( !bye )
+
+✅ 기타 내용
+➡️ 자유롭게 채팅창에서 대화를 나누셔도 되요!
+➡️ 당신의 앞날을 응원합니다.
+➡️ 저랑 같은 시간을 공부하고 싶으시면 링크를 접속해보세요! jisungeda55점github점io/TimeCast/
+➡️ 서로 존중하는 바른 문화를 지향합니다.
+➡️ 디데이를 추가하고 싶으시면 인스타그램에 문의해보세요.  haesoleyo
+➡️ 개인정보 보호를 위하여 개인적인 인스타그램, 줌, 전화번호의 공유는 제한합니다.
+➡️ 시간의 시작 또는 끝마다 알림이 울려요!
+➡️ 채팅은 잠시 쉴 때 마다 볼게요!
+
+✅ 문의
+➡️ 인스타그램 : haesoleyo
+➡️ 메일 : Coming SOON!
+
+✅ Mood theme 및 기타 기능들은 직접 만들어서 사용하고 있어요!
+➡️ Mood theme - Sound of hot spring water
+➡️ Github - github점com/JisungEda55 
+[다양한 도구들이 있어요 원하시면 출처를 남기고 사용해주세요!] 
+
+
+[ Plus ] ENG
+✅ Exam and Study Schedule
+📝 A student preparing for the 2025 Korean College Scholastic Ability Test (수능).
+➡️ Studying independently with online lectures.
+➡️ Making efforts to ensure that the internet lectures and textbooks are not visible on the broadcast screen.
+      If the lectures or textbooks are visible on the broadcast screen, please contact me.
+
+✅ Time Table
+➡️ The Timetable displayed on the right can be found at jisungeda55(dot)github(dot)io/TimeCast/.
+➡️ The video in the top right corner is a live stream of Seoul. You can watch it here: https://www.youtube.com/live/UhULZg8QOiE?si=5Lel5gZV1UEx8eS9
+
+✅ Available Commands
+🛑 !안녕 ( !hi )
+🛑 !출석 ( !here, !imhere )
+🛑 !들어갑니다 ( !bye )
+
+✅ Additional Information
+➡️ Feel free to chat and converse in the chat window!
+➡️ I support you in your future endeavors.
+➡️ If you want to study together at the same time, check out the link! jisungeda55(dot)github(dot)io/TimeCast/
+➡️ We promote a culture of mutual respect.
+➡️ If you want to add a countdown timer, feel free to contact me on Instagram. haesoleyo
+➡️ For privacy reasons, sharing personal Instagram accounts, Zoom IDs, and phone numbers is restricted.
+➡️ Notifications will ring at the beginning or end of each hour!
+➡️ I'll check the chat whenever I take a short break!
+
+✅ Contact Information
+➡️ Instagram: haesoleyo
+➡️ Email: Coming SOON!
+
+✅ I've personally created the mood theme and other features!
+➡️ Mood theme - The sound of tapping rain and the scratch of a pencil
+➡️ Github - github(dot)com/JisungEda55
+[Feel free to use various tools, just remember to credit the source!]
+`;
+
         function updateText() {
             const days = ["일", "월", "화", "수", "목", "금", "토"];
             const now = new Date();
@@ -102,9 +176,17 @@
             });
         }
 
-        function showCopySuccessMessage() {
+        function copyDescription() {
+            navigator.clipboard.writeText(longDescription).then(() => {
+                showCopySuccessMessage('설명 복사 성공!');
+            }).catch(err => {
+                console.error('설명 복사 실패: ', err);
+            });
+        }
+
+        function showCopySuccessMessage(message) {
             const copySuccessMessage = document.getElementById('copy-success');
-            copySuccessMessage.innerText = '복사 성공!';
+            copySuccessMessage.innerText = message || '복사 성공!';
             copySuccessMessage.classList.add('show'); // 클래스를 추가하여 메시지를 나타나게 함
             setTimeout(() => {
                 copySuccessMessage.classList.remove('show'); // 일정 시간 후 클래스를 제거하여 메시지를 숨김
